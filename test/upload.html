@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<!--
+/*
+ * Js chunked file uploader
+ * https://github.com/jjunzhang/ChunkedFileUploader
+ *
+ */
+-->
+<html lang="en">
+<head>
+<!-- Force latest IE rendering engine or ChromeFrame if installed -->
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<![endif]-->
+<meta charset="utf-8">
+<title>jQuery File Upload Plugin Test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/form.css">
+</head>
+<body>
+<h1>Javascript Chunked File Uploader Test</h1>
+<div class="content">
+	<div class="form">
+		<input type='file' name='myFile' id='uploadFile' multiple />
+		<span class="btninfo">Choose the file !</span>
+		<input id="submit" type="submit" value="Upload" />
+	</div>
+	<ul id="uploadUl" class="upload_ul">
+		<li class="info-title">
+			<span class="info_inline title">title</span>
+			<span class="info_inline">type</span>
+			<span class="info_inline">size</span>
+			<span class="info_inline">status</span>
+			<span class="info_inline">action</span>
+			<span class="info_inline">action</span>
+			<!-- <span class="info_inline">action</span>  -->
+		</li>
+	</ul>
+	<div id="templates">
+		<li id="file-(id)">
+			<span class="info_inline title">(title)</span>
+			<span class="info_inline">(type)</span>
+			<span class="info_inline">(size)</span>
+			<span class="info_inline_status">(status)</span>
+			<span class="info_inline">(pause)</span>
+			<span class="info_inline">(resume)</span>
+			<!-- <span class="info_inline">(remove)</span> -->
+		</li>
+	</div>
+	<div id="footer">
+  	<p>1. click default file button to choose file</p>
+  	<p>2. ckick upload button to upload file</p>
+	</div>
+</div>
+<script style="text/javascript">
+<script src="uploader.js"></script>
+</script>
+</body>
+</html>
