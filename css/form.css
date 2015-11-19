@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.content{
+#upload_container{
 	width:1000px;
 	margin:200px auto;
 }
@@ -15,6 +15,7 @@
  input[type="submit"]{
 	margin-left:230px;
  }
+ 
  #uploadFile{
 	cursor:pointer;
  	width:230px;
