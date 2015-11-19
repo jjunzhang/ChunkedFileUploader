@@ -55,7 +55,7 @@ var chunkedFileUploader = {
 						var span = chunkedFileUploader.config.container.getElementsByTagName('span');
 						span[3].innerHTML = "Uploading...";
 						chunkedFileUploader.config.files[key].submited = true;
-						iniXHR(_file,key,"POST", "/betternet/ajax/uploadfiletoserver", "upload", _file.slice(0, chunkedFileUploader.config.bytes_per_chunk),{ 'X-FileName' : _file.name }, 0);
+						iniXHR(_file,key,"POST", "server/uploadFile.php", "upload", _file.slice(0, chunkedFileUploader.config.bytes_per_chunk),{ 'X-FileName' : _file.name }, 0);
 					}
 				}
 			});
@@ -89,7 +89,7 @@ var chunkedFileUploader = {
 						target.parentElement.previousElementSibling.firstChild.disabled = false;
 						var _xhr2 = new XMLHttpRequest();
 						var file = files[fileId];
-						_xhr2.open("GET", "/betternet/ajax/getbytesfromserver?fileName="+file.name, true);
+						_xhr2.open("GET", "server/getBytesFromServer.php?fileName="+file.name, true);
 						_xhr2.send();
 						_xhr2.onload = function(){
 							if(_xhr2.readyState == 4){
@@ -101,7 +101,7 @@ var chunkedFileUploader = {
 									var bytesSent = response.bytesUploaded;
 									var fileBlob = file.slice(bytesSent, bytesSent+chunkedFileUploader.config.bytes_per_chunk); // crux of this article
 									/** upload this remaining file to the server now */
-									iniXHR(file, fileId, "POST", "/betternet/ajax/uploadfiletoserver", "resume", fileBlob, { 'X-FileName' : file.name }, bytesSent);
+									iniXHR(file, fileId, "POST", "server/uploadFile.php", "resume", fileBlob, { 'X-FileName' : file.name }, bytesSent);
 								}
 							}
 						}
@@ -110,7 +110,7 @@ var chunkedFileUploader = {
 						// remove file from server side
 						span[3].innerHTML = "Removing...";
 						var __xhr = new XMLHttpRequest();
-						__xhr.open("GET", "/betternet/ajax/deleteFile?fileName="+files[fileId].name, true);
+						__xhr.open("GET", "server/removeFile.php?fileName="+files[fileId].name, true);
 						//retrieve the entry for the stored file reference
 						__xhr.send();
 						__xhr.onload = function(){
@@ -165,7 +165,7 @@ function iniXHR(file, fileId, method, url, mode, fileDataURL, headersObject, sta
 					if (start + chunkedFileUploader.config.bytes_per_chunk <= file.size) {
 						localStorage.setItem(fileId, start + "");
 						start += chunkedFileUploader.config.bytes_per_chunk;
-						iniXHR(file, fileId, "POST", "/betternet/ajax/uploadfiletoserver", "upload", file.slice(start, start+chunkedFileUploader.config.bytes_per_chunk), { 'X-FileName' : file.name }, start);
+						iniXHR(file, fileId, "POST", "server/uploadFile.php", "upload", file.slice(start, start+chunkedFileUploader.config.bytes_per_chunk), { 'X-FileName' : file.name }, start);
 					}else{
 						/** note that once the upload completes, make sure to remove
 						*  the storageLocal entry.
