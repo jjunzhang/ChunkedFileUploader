@@ -94,7 +94,7 @@ var chunkedFileUploader = {
 					_xhr2.onload = function(){
 						if(_xhr2.readyState == 4){
 							if(_xhr2.status == 200 && _xhr2.response){
-								response = JSON.parse(_xhr2.response);
+								var response = JSON.parse(_xhr2.response);
 								/**
 								 * {fileName: myAwesomeFile,bytesUploaded : 2440}
 								 */
